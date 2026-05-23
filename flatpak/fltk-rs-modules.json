@@ -129,7 +129,7 @@
         {
           "type": "git",
           "url": "https://gitlab.gnome.org/GNOME/libpanel.git",
-          "branch": "libpanel-1.8"
+          "tag": "1.8.1"
         }
       ],
       "config-opts": [
@@ -148,7 +148,7 @@
         {
           "type": "git",
           "url": "https://gitlab.gnome.org/GNOME/libdex.git",
-          "branch": "libdex-0.10"
+          "tag": "0.10.1"
         }
       ],
       "config-opts": [
@@ -165,7 +165,7 @@
         {
           "type": "git",
           "url": "https://gitlab.gnome.org/GNOME/sysprof.git",
-          "branch": "sysprof-48"
+          "tag": "50.0"
         }
       ],
       "build-options": {
