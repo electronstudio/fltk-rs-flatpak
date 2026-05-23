@@ -53,18 +53,6 @@
       ]
     },
     {
-      "name": "libpango-1.0",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.gnome.org/sources/pango/1.56/pango-1.56.3.tar.xz",
-          "sha256": "2606252bc25cd8d24e1b7f7e92c3a272b37acd6734347b73b47a482834ba2491"
-        }
-      ],
-      "config-opts": ["-Dxft=enabled", "-Dfreetype=enabled", "-Dcairo=enabled"]
-    },
-    {
       "name": "libsupc++",
       "buildsystem": "autotools",
       "sources": [
@@ -88,6 +76,18 @@
       ]
     },
     {
+      "name": "libpango-1.0",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.gnome.org/sources/pango/1.56/pango-1.56.3.tar.xz",
+          "sha256": "2606252bc25cd8d24e1b7f7e92c3a272b37acd6734347b73b47a482834ba2491"
+        }
+      ],
+      "config-opts": ["-Dxft=enabled", "-Dfreetype=enabled", "-Dcairo=enabled"]
+    },
+    {
       "name": "pcre",
       "buildsystem": "autotools",
       "sources": [
@@ -97,18 +97,6 @@
           "sha256": "0e138387df7835d7403b8351e2226c1377da804e0737db0e071b48f07c9d12ee"
         }
       ]
-    },
-    {
-      "name": "glib-object",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.gnome.org/sources/glib/2.84/glib-2.84.0.tar.xz",
-          "sha256": "f8823600cb85425e2815cfad82ea20fdaa538482ab74e7293d58b3f64a5aff6a"
-        }
-      ],
-      "config-opts": ["-Ddefault_library=shared"]
     },
     {
       "name": "harfbuzz",
@@ -185,7 +173,7 @@
           "PKG_CONFIG_PATH": "/app/lib/pkgconfig:/app/lib64/pkgconfig",
           "CFLAGS": "-I/app/include/libdex-1 -I/app/include/libpanel-1",
           "CXXFLAGS": "-I/app/include/libdex-1 -I/app/include/libpanel-1",
-          "LD_LIBRARY_PATH": "/usr/lib/sdk/llvm20/lib:/app/lib64:/app/lib"
+          "LD_LIBRARY_PATH": "/usr/lib/sdk/llvm22/lib:/app/lib64:/app/lib"
         }
       },
       "config-opts": ["-Dsysprofd=none"]
