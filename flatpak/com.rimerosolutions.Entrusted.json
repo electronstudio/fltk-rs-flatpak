@@ -1,11 +1,11 @@
 {
   "id": "com.rimerosolutions.Entrusted",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "48",
+  "runtime-version": "50",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": [
     "org.freedesktop.Sdk.Extension.rust-stable",
-    "org.freedesktop.Sdk.Extension.llvm20"
+    "org.freedesktop.Sdk.Extension.llvm22"
   ],
   "command": "entrusted",
   "finish-args": [
@@ -16,8 +16,8 @@
     "--env=FLATPAK=1"
   ],
   "build-options": {
-    "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm20/bin",
-    "prepend-ld-library-path": "/usr/lib/sdk/llvm20/lib"
+    "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin",
+    "prepend-ld-library-path": "/usr/lib/sdk/llvm22/lib"
   },
   "modules": [
     "fltk-rs-modules.json",
@@ -44,7 +44,7 @@
       },
       "build-commands": [
         "cargo --offline fetch --manifest-path /run/build/entrusted/app/Cargo.toml --verbose",
-        "source /usr/lib/sdk/llvm20/enable.sh",
+        "source /usr/lib/sdk/llvm22/enable.sh",
         "cargo --offline build --manifest-path /run/build/entrusted/app/Cargo.toml --features fltk/use-wayland --release",
         "install -Dm644 -t /app/share/metainfo/ flatpak/com.rimerosolutions.Entrusted.metainfo.xml",
         "install -Dm644 -t /app/share/applications/ flatpak/com.rimerosolutions.Entrusted.desktop",

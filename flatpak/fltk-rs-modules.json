@@ -1,9 +1,7 @@
 {
   "name": "fltk-rs-build-deps",
   "buildsystem": "simple",
-  "build-commands": [
-    "true"
-  ],
+  "build-commands": ["true"],
   "sources": [],
   "modules": [
     {
@@ -12,11 +10,15 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz",
-          "sha256": "fd4829912cddd12f84181c3451cc752be224643e87fac497b69edddadc49b4f2"
+          "url": "https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz",
+          "sha256": "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898"
         }
       ],
-      "config-opts": ["--enable-static", "--disable-shared", "CFLAGS=-fPIE"]
+      "config-opts": [
+        "--enable-static",
+        "--disable-shared",
+        "CFLAGS=-fPIC -std=gnu17"
+      ]
     },
     {
       "name": "mpfr",
@@ -28,7 +30,11 @@
           "sha256": "06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993"
         }
       ],
-      "config-opts": ["--enable-static", "--disable-shared", "CFLAGS=-fPIE"]
+      "config-opts": [
+        "--enable-static",
+        "--disable-shared",
+        "CFLAGS=-fPIC -std=gnu17"
+      ]
     },
     {
       "name": "mpc",
@@ -40,7 +46,11 @@
           "sha256": "ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8"
         }
       ],
-      "config-opts": ["--enable-static", "--disable-shared", "CFLAGS=-fPIE"]
+      "config-opts": [
+        "--enable-static",
+        "--disable-shared",
+        "CFLAGS=-fPIC -std=gnu17"
+      ]
     },
     {
       "name": "libpango-1.0",
@@ -60,8 +70,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz",
-          "sha256": "a7b39bc69cbf9e25826c5a60ab26477001f7c08d85cec04bc0e29cabed6f3cc9"
+          "url": "https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/gcc-15.2.0.tar.xz",
+          "sha256": "438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e"
         }
       ],
       "config-opts": [
@@ -73,8 +83,8 @@
         "--with-mpc=/app",
         "--with-mpfr=/app",
         "--with-gmp=/app",
-        "CFLAGS=-fPIE",
-        "CXXFLAGS=-fPIE"
+        "CFLAGS=-fPIC",
+        "CXXFLAGS=-fPIC"
       ]
     },
     {
