@@ -1,11 +1,10 @@
 id: com.rimerosolutions.Entrusted
-
 runtime: org.gnome.Platform
-runtime-version: "48"
+runtime-version: "50"
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm22
 command: entrusted
 finish-args:
   - --socket=wayland
@@ -14,10 +13,10 @@ finish-args:
   - --share=ipc
   - --env=FLATPAK=1
 build-options:
-  append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm20/bin
-  prepend-ld-library-path: "/usr/lib/sdk/llvm20/lib"
+  append-path: "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin"
+  prepend-ld-library-path: "/usr/lib/sdk/llvm22/lib"
 modules:
-  - "fltk-rs-modules.json"
+  - fltk-rs-modules.json
   - name: entrusted
     buildsystem: simple
     sources:
@@ -27,16 +26,28 @@ modules:
       - cargo-sources.json
     build-options:
       env:
-        CARGO_HOME: /run/build/entrusted/cargo
-        XDG_CACHE_HOME: /run/build/entrusted/cache
+        CARGO_HOME: "/run/build/entrusted/cargo"
+        XDG_CACHE_HOME: "/run/build/entrusted/cache"
         LC_ALL: C.utf8
-        CFLAGS: -I/app/include/pango-1.0/ -I/app/include/glib-2.0/ -I/app/lib64/glib-2.0/include/ -I/app/include/harfbuzz/ -I/app/include/cairo/ -lffi -lgobject-2.0 -lglib-2.0 -lcairo -lpcre2-8
-        CXXFLAGS: -I/app/include/pango-1.0/ -I/app/include/glib-2.0/ -I/app/lib64/glib-2.0/include/ -I/app/include/harfbuzz/ -I/app/include/cairo/ -lffi -lgobject-2.0 -lglib-2.0 -lcairo -lpcre2-8
-        RUSTFLAGS: -L /app/lib -L /app/lib64 -C link-arg=-I/app/include/pango-1.0/ -C link-arg=-I/app/include/glib-2.0/ -C link-arg=-I/app/lib64/glib-2.0/include/ -C link-arg=-I/app/include/harfbuzz/ -C link-arg=-I/app/include/cairo/ -C link-arg=-lffi -C link-arg=-lgobject-2.0 -C link-arg=-lglib-2.0 -C link-arg=-lcairo -C link-arg=-lpcre2-8
+        CFLAGS:
+          "-I/app/include/pango-1.0/ -I/app/include/glib-2.0/ -I/app/lib64/glib-2.0/include/
+          -I/app/include/harfbuzz/ -I/app/include/cairo/ -lffi -lgobject-2.0 -lglib-2.0
+          -lcairo -lpcre2-8"
+        CXXFLAGS:
+          "-I/app/include/pango-1.0/ -I/app/include/glib-2.0/ -I/app/lib64/glib-2.0/include/
+          -I/app/include/harfbuzz/ -I/app/include/cairo/ -lffi -lgobject-2.0 -lglib-2.0
+          -lcairo -lpcre2-8"
+        RUSTFLAGS:
+          "-L /app/lib -L /app/lib64 -C link-arg=-I/app/include/pango-1.0/
+          -C link-arg=-I/app/include/glib-2.0/ -C link-arg=-I/app/lib64/glib-2.0/include/
+          -C link-arg=-I/app/include/harfbuzz/ -C link-arg=-I/app/include/cairo/ -C
+          link-arg=-lffi -C link-arg=-lgobject-2.0 -C link-arg=-lglib-2.0 -C link-arg=-lcairo
+          -C link-arg=-lpcre2-8"
     build-commands:
       - cargo --offline fetch --manifest-path /run/build/entrusted/app/Cargo.toml --verbose
-      - source /usr/lib/sdk/llvm20/enable.sh
-      - cargo --offline build --manifest-path /run/build/entrusted/app/Cargo.toml --features fltk/use-wayland --release
+      - source /usr/lib/sdk/llvm22/enable.sh
+      - cargo --offline build --manifest-path /run/build/entrusted/app/Cargo.toml --features
+        fltk/use-wayland --release
       - install -Dm644 -t /app/share/metainfo/ flatpak/com.rimerosolutions.Entrusted.metainfo.xml
       - install -Dm644 -t /app/share/applications/ flatpak/com.rimerosolutions.Entrusted.desktop
       - install -Dm755 -t /app/bin/ /run/build/entrusted/app/target/release/entrusted
